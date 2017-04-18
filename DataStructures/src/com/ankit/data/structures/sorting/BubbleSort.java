@@ -48,27 +48,21 @@ public class BubbleSort {
 		System.out.println(arr.length);
 		
 		BubbleSort bubbleSort = new BubbleSort();
-		bubbleSort.sort(arr);
+		bubbleSort.sort_IncrementalLoop(arr);
 		bubbleSort.printArray(arr);
 		
-		bubbleSort.bubbleSort_Incremental(arr1);
+		bubbleSort.sort_DecrementalLoop(arr1);
 		bubbleSort.printArray(arr1);
 	}
-
-	private void sort(Integer arr[]) {
-		for (int i = 0; i < arr.length - 1; i++) {
-			for (int j = arr.length - 1; j > i; j--) {
-				counter++;
-				int key = arr[j];
-				if (arr[j] < arr[j - 1]) {
-					arr[j] = arr[j - 1];
-					arr[j - 1] = key;
-				}
-			}
-		}
-	}
-
-	private void bubbleSort_Incremental(Integer arr[]) {
+	
+	/**
+	 * This method sorts the array with starting
+	 *  to position the largest element first.
+	 *  ie. Position largest element at the last position.
+	 *  
+	 * @param arr
+	 */
+	private void sort_IncrementalLoop(Integer arr[]) {
 		int arrayLengthLimit = arr.length - 1;
 		for (int i = 0; i < arrayLengthLimit; i++) {
 			for (int j = 0; j < arrayLengthLimit - i; j++) {
@@ -81,7 +75,32 @@ public class BubbleSort {
 			}
 		}
 	}
-	
+
+	/**
+	 * This method sorts the array with starting
+	 *  to position the smallest element first.
+	 *  ie. Position smallest element at the first position.
+	 *  
+	 * @param arr
+	 */
+	private void sort_DecrementalLoop(Integer arr[]) {
+		for (int i = 0; i < arr.length - 1; i++) {
+			for (int j = arr.length - 1; j > i; j--) {
+				counter++;
+				int key = arr[j];
+				if (arr[j] < arr[j - 1]) {
+					arr[j] = arr[j - 1];
+					arr[j - 1] = key;
+				}
+			}
+		}
+	}
+
+	/**
+	 * Output the array on console.
+	 * 
+	 * @param arr
+	 */
 	private void printArray(Integer arr[]){
 		System.out.println();
 		for (Integer i : arr) {
@@ -90,8 +109,3 @@ public class BubbleSort {
 	}
 
 }
-// Check the first step of Bubble Sort
-/*
- * int key = arr[i]; if (arr[i] > arr[i + 1]) { arr[i] = arr[i + 1]; arr[i + 1]
- * = key; }
- */
