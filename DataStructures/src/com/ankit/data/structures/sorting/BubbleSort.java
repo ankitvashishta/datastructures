@@ -34,7 +34,10 @@ package com.ankit.data.structures.sorting;
  * lesser from the previous cycle as they have one 
  * lesser element to position.
  * 
- * 
+ * Running time complexity :
+ * Best Case - O(n)
+ * Average Case - O(n^2)
+ * Worst Case - O(n^2)
  *
  */
 

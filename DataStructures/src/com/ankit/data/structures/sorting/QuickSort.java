@@ -50,6 +50,11 @@ package com.ankit.data.structures.sorting;
  * {8, 6} -> {6, 8}		Main Array - {1, 2, 3, 4, 5, 6, 8}
  * {6, 8} -> {6, 8}		Main Array - {1, 2, 3, 4, 5, 6, 8}
  * 
+ * Running time complexity :
+ * Best Case - O(nlogn)
+ * Average Case - O(nlogn)
+ * Worst Case - O(n^2)
+ * 
  */
 public class QuickSort {
 

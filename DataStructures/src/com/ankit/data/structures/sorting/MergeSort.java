@@ -1,5 +1,15 @@
 package com.ankit.data.structures.sorting;
 
+/**
+ * 
+ * @author Vashishta.Ankit
+ * 
+ * Running time complexity :
+ * Best Case - O(nlogn)
+ * Average Case - O(nlogn)
+ * Worst Case - O(nlogn)
+ *
+ */
 public class MergeSort {
 
 	public static void main(String args[]) {
