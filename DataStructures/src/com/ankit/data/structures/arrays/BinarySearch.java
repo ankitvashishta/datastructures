@@ -2,35 +2,35 @@ package com.ankit.data.structures.arrays;
 
 /**
  * 
- * @author ankit
+ * @author ankit 
+ * 
  * Use binary search to retrieve an element in a sorted array.
  *
  */
 public class BinarySearch {
-	
+
 	/*
 	 * Using recursion.
 	 */
 	static int binSearch(int[] a, int key) {
-	    //TODO: Write - Your - Code
-	    int mid = a.length/2;
-	    return search(a, 0, a.length, key);
-	  }
-	  static int search(int[] a, int start, int end, int key){
-	    if(start == end){
-	      if(a[start] == key)
-	        return start;
-	      else
-	        return -1;
-	    }
-	    int mid = (start+end)/2;
-	    if(key == a[mid])
-	      return mid;
-	    else if(key < a[mid])
-	      return search(a, start, mid, key);
-	    else 
-	      return search(a, mid+1, end, key);
-	  }
+		return search(a, 0, a.length, key);
+	}
+
+	static int search(int[] a, int start, int end, int key) {
+		if (start == end) {
+			if (a[start] == key)
+				return start;
+			else
+				return -1;
+		}
+		int mid = (start + end) / 2;
+		if (key == a[mid])
+			return mid;
+		else if (key < a[mid])
+			return search(a, start, mid, key);
+		else
+			return search(a, mid + 1, end, key);
+	}
 
 	/*
 	 * Using loop to binary search.
@@ -62,7 +62,7 @@ public class BinarySearch {
 		for (int i = 0; i < inputs.length; i++) {
 			System.out.println("binarySearch(arr, " + inputs[i] + ") = " + binarySearch(arr, inputs[i]));
 		}
-		
+
 		for (int i = 0; i < inputs.length; i++) {
 			System.out.println("binSearch(arr, " + inputs[i] + ") = " + binSearch(arr, inputs[i]));
 		}
