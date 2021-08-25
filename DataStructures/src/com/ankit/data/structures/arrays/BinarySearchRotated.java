@@ -1,8 +1,14 @@
 package com.ankit.data.structures.arrays;
 
+/**
+ * 
+ * @author ankit
+ * Search for a given number in a sorted array that has been rotated by some arbitrary number.
+ *
+ */
 public class BinarySearchRotated {
 
-	static int binarySearchRotated(int[] arr, int key) {
+	static int binarySearch_recursion(int[] arr, int key) {
 		return binarySearch(arr, 0, arr.length - 1, key);
 	}
 
@@ -43,15 +49,15 @@ public class BinarySearchRotated {
 
 	public static void main(String[] args) {
 		int[] v1 = { 6, 7, 1, 2, 3, 4, 5 };
-		System.out.println("Key(3) found at: " + binarySearchRotated(v1, 3));
-		System.out.println("Key(6) found at: " + binarySearchRotated(v1, 6));
+		System.out.println("Key(3) found at: " + binarySearch_recursion(v1, 3));
+		System.out.println("Key(6) found at: " + binarySearch_recursion(v1, 6));
 		System.out.println("******************************");
 		System.out.println("Key(3) found at: " + binarySearch_loop(v1, 3));
 		System.out.println("Key(6) found at: " + binarySearch_loop(v1, 6));
 		System.out.println("-------------------------------");
 		int[] v2 = { 4, 5, 6, 1, 2, 3 };
-		System.out.println("Key(3) found at: " + binarySearchRotated(v2, 3));
-		System.out.println("Key(6) found at: " + binarySearchRotated(v2, 6));
+		System.out.println("Key(3) found at: " + binarySearch_recursion(v2, 3));
+		System.out.println("Key(6) found at: " + binarySearch_recursion(v2, 6));
 		System.out.println("******************************");
 		System.out.println("Key(3) found at: " + binarySearch_loop(v2, 3));
 		System.out.println("Key(6) found at: " + binarySearch_loop(v2, 6));
