@@ -55,6 +55,8 @@ package com.ankit.data.structures.sorting;
  * Average Case - O(nlogn)
  * Worst Case - O(n^2)
  * 
+ * This recursive solution has an O(logn) memory complexity since it consumes memory on the stack.
+ * 
  */
 public class QuickSort {
 
