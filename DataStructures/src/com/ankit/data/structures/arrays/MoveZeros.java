@@ -28,6 +28,10 @@ public class MoveZeros {
 		}
 	}
 
+	/*
+	 * Time Complexity: O(n) where n is the size of the array.
+	 * Here, we start from the end of the array.
+	 */
 	static void moveZerosToLeft_Optimised(int[] arr) {
 		int readIndex = arr.length - 1;
 		int writeIndex = arr.length - 1;
