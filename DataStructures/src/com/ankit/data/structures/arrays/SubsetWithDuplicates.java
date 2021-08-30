@@ -14,12 +14,19 @@ import java.util.List;
 public class SubsetWithDuplicates {
 
 	/*
-	 * Time Complexity: O(N * 2^N) In each step, the number of subsets doubles (if
-	 * not duplicate) as we clone the existing subsets and add each element to the
-	 * clone of all the existing subsets. Finally, we will have a total of O(2^N)
-	 * subsets, where ‘N’ is the total number of elements. And since we loop through
-	 * the input array, therefore, the time complexity of the algorithm will be
-	 * O(N*2^N)
+	 * Time Complexity: O(N * 2^N)
+	 * 
+	 * In each step, the number of subsets doubles (if not duplicate) as we clone
+	 * the existing subsets and add each element to the clone of all the existing
+	 * subsets. Finally, we will have a total of O(2^N) subsets, where ‘N’ is the
+	 * total number of elements. And since we loop through the input array,
+	 * therefore, the time complexity of the algorithm will be O(N*2^N)
+	 * 
+	 * Space Complexity: O(N * 2^N).
+	 * 
+	 * At most, we will have a total of O(2^N)subsets, and each subset can take up
+	 * to O(N)space, therefore, the space complexity of our algorithm will be
+	 * O(N*2^N).
 	 * 
 	 */
 	public static List<List<Integer>> findSubsets(int[] nums) {
@@ -33,7 +40,7 @@ public class SubsetWithDuplicates {
 				List<List<Integer>> clones = new ArrayList<List<Integer>>();
 				for (List<Integer> subset : subsets) {
 					if (subset.contains(nums[i])) {
-						List<Integer> clone = (List<Integer>) ((ArrayList<Integer>) subset).clone();
+						List<Integer> clone = new ArrayList<>(subset);
 						clone.add(nums[i]);
 						clones.add(clone);
 					}
@@ -42,7 +49,7 @@ public class SubsetWithDuplicates {
 			} else {
 				List<List<Integer>> clones = new ArrayList<List<Integer>>();
 				for (List<Integer> subset : subsets) {
-					List<Integer> clone = (List<Integer>) ((ArrayList<Integer>) subset).clone();
+					List<Integer> clone = new ArrayList<>(subset);
 					clone.add(nums[i]);
 					clones.add(clone);
 				}
