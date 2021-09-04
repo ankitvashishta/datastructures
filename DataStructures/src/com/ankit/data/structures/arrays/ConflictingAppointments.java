@@ -1,9 +1,34 @@
 package com.ankit.data.structures.arrays;
 
+import java.util.Arrays;
+
+/**
+ * Given an array of intervals representing ‘N’ appointments, find out if a
+ * person can attend all the appointments.
+ * 
+ * @author ankit
+ *
+ */
 public class ConflictingAppointments {
 
+	/*
+	 * Runtime Complexity: O(nlogn)
+	 * 
+	 * The runtime taken by the below program is O(nlogn) + O(n). The first taken
+	 * for sorting the array and second for the loop. Asymptotically, which is equal
+	 * to O(nlogn).
+	 * 
+	 * Space Complexity: O(n) - taken by the sort method.
+	 */
 	public static boolean canAttendAllAppointments(Interval[] intervals) {
-		// TODO: Write your code here
+		Arrays.sort(intervals, (a, b) -> Integer.compare(a.start, b.start));
+		Interval lastInterval = intervals[0];
+		for (int i = 1; i < intervals.length; i++) {
+			if (intervals[i].start < lastInterval.end)
+				return false;
+			else
+				lastInterval = intervals[i];
+		}
 		return true;
 	}
 
@@ -31,4 +56,5 @@ class Interval {
 		this.start = start;
 		this.end = end;
 	}
+
 }
