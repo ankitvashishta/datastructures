@@ -69,8 +69,7 @@ public class SingleLinkedListTest {
 		Assert.assertEquals(5, singleLinkedList.getLength());
 		singleLinkedList.insertNodeAtPosition(position, newNode);
 		Assert.assertEquals(6, singleLinkedList.getLength());
-		Assert.assertEquals(getNodeAtPosition(singleLinkedList, position),
-				newNode);
+		Assert.assertEquals(getNodeAtPosition(singleLinkedList, position), newNode);
 	}
 
 	@Test
@@ -104,14 +103,32 @@ public class SingleLinkedListTest {
 	}
 
 	@Test
+	public void testDetectLoop() {
+		insertNodes(singleLinkedList);
+		Assert.assertEquals(false, singleLinkedList.detectLoop());
+	}
+
+	@Test
+	public void testGetMidOfList() {
+		insertNodes(singleLinkedList);
+		Assert.assertEquals(3, singleLinkedList.getMidOfList().intValue());
+	}
+
+	@Test
+	public void testRemoveDuplicates() {
+		insertNodes_Duplicates(singleLinkedList);
+		Assert.assertEquals(6, singleLinkedList.getLength());
+		singleLinkedList.removeDuplicates();
+		Assert.assertEquals(5, singleLinkedList.getLength());
+	}
+
+	@Test
 	public void testRemoveFromPosition() {
 		int position = 3;
 		insertNodes(singleLinkedList);
 		Assert.assertEquals(5, singleLinkedList.getLength());
-		Node<Integer> nodeAtPosition = getNodeAtPosition(
-				singleLinkedList, position);
-		Node<Integer> removedNode = singleLinkedList
-				.removeFromPosition(position);
+		Node<Integer> nodeAtPosition = getNodeAtPosition(singleLinkedList, position);
+		Node<Integer> removedNode = singleLinkedList.removeFromPosition(position);
 		Assert.assertEquals(4, singleLinkedList.getLength());
 		Assert.assertEquals(nodeAtPosition.getData(), removedNode.getData());
 	}
@@ -143,6 +160,21 @@ public class SingleLinkedListTest {
 		singleLinkedList.insertNodeAtStart(node5);
 	}
 
+	private void insertNodes_Duplicates(SingleLinkedList<Integer> singleLinkedList) {
+		Node<Integer> node1 = new Node<Integer>(1);
+		Node<Integer> node2 = new Node<Integer>(2);
+		Node<Integer> node3 = new Node<Integer>(3);
+		Node<Integer> node4 = new Node<Integer>(4);
+		Node<Integer> node5 = new Node<Integer>(5);
+		Node<Integer> node6 = new Node<Integer>(3);
+		singleLinkedList.insertNodeAtStart(node1);
+		singleLinkedList.insertNodeAtStart(node2);
+		singleLinkedList.insertNodeAtStart(node3);
+		singleLinkedList.insertNodeAtStart(node4);
+		singleLinkedList.insertNodeAtStart(node6);
+		singleLinkedList.insertNodeAtStart(node5);
+	}
+
 	private Node<Integer> getLastNode(SingleLinkedList<Integer> singleLinkedList) {
 		Node<Integer> currentListNode = singleLinkedList.getHead();
 		if (currentListNode != null) {
@@ -153,8 +185,7 @@ public class SingleLinkedListTest {
 		return currentListNode;
 	}
 
-	private Node<Integer> getNodeAtPosition(
-			SingleLinkedList<Integer> singleLinkedList, int position) {
+	private Node<Integer> getNodeAtPosition(SingleLinkedList<Integer> singleLinkedList, int position) {
 		Node<Integer> currentListNode = singleLinkedList.getHead();
 		if (currentListNode != null) {
 			while (currentListNode.getNext() != null && position > 1) {

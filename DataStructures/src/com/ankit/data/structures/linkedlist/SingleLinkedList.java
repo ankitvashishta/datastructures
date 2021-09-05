@@ -1,5 +1,8 @@
 package com.ankit.data.structures.linkedlist;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class SingleLinkedList<T> {
 
 	private Node<T> head;
@@ -134,6 +137,70 @@ public class SingleLinkedList<T> {
 		}
 		return null;
 
+	}
+
+	/**
+	 * Checks if there exists a loop in the single linked list.
+	 * 
+	 * @return if loop exists : boolean.
+	 */
+	public boolean detectLoop() {
+		Node<T> slowerNode = this.getHead();
+		Node<T> fasterNode = this.getHead().getNext();
+
+		while (fasterNode != null && fasterNode.getNext() != null) {
+			if (fasterNode.getData() == slowerNode.getData())
+				return true;
+			slowerNode = slowerNode.getNext();
+			fasterNode = fasterNode.getNext().getNext();
+		}
+		return false;
+	}
+
+	/**
+	 * Finds the middle node of the list.
+	 * 
+	 * @return data of the middle node.
+	 */
+	public T getMidOfList() {
+		Node<T> slowerNode = this.getHead();
+		Node<T> fasterNode = this.getHead();
+
+		while (fasterNode != null && fasterNode.getNext() != null) {
+			fasterNode = fasterNode.getNext().getNext();
+			if (fasterNode != null)
+				slowerNode = slowerNode.getNext();
+		}
+		return slowerNode.getData();
+	}
+
+	/**
+	 * Remove the duplicates from the Single Linked List.
+	 * 
+	 * @return data of the middle node.
+	 */
+	public void removeDuplicates() {
+
+		if (this.getHead() == null)
+			return;
+
+		Set<T> nodeSet = new HashSet<T>();
+		Node<T> currNode = this.getHead();
+		Node<T> nextNode = currNode.getNext();
+
+		nodeSet.add(currNode.getData());
+
+		while (nextNode != null) {
+			boolean isUnique = nodeSet.add(nextNode.getData());
+			if (!isUnique) {
+				currNode.setNext(nextNode.getNext());
+				nextNode = currNode.getNext();
+				length--;
+			} else {
+				currNode = nextNode;
+				nextNode = currNode.getNext();
+			}
+		}
 	}
 
 	/**
