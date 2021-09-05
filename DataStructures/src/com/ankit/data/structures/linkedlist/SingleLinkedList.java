@@ -177,7 +177,9 @@ public class SingleLinkedList<T> {
 	/**
 	 * Remove the duplicates from the Single Linked List.
 	 * 
-	 * @return data of the middle node.
+	 * Runtime Complexity: O(n)
+	 * 
+	 * Space Complexity: O(n) as we use a set to store data.
 	 */
 	public void removeDuplicates() {
 
