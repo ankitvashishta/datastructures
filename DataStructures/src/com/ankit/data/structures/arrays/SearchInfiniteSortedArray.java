@@ -24,52 +24,30 @@ public class SearchInfiniteSortedArray {
 	 * Space Complexity: O(1).
 	 */
 	public static int search(ArrayReader reader, int key) {
-		int upperLimit = getUpperLimit(reader, key);
-		if (key <= reader.get(upperLimit)) {
-			int start = 0;
-			int end = upperLimit;
-			int mid = 0;
-			while (start < end) {
-				mid = (start + end) / 2;
-				int temp = reader.get(mid);
-				if (key == temp)
-					return mid;
-				else if (temp < key)
-					start = mid + 1;
-				else
-					end = mid;
-			}
-			if (reader.get(start) == key)
-				return start;
+		int start = 0;
+		int end = 1;
+		while (reader.get(end) < key) {
+			start = end;
+			end = end * 2;
 		}
-		return -1;
+		return binarySearch(reader, key, start, end);
 	}
 
-	public static int getUpperLimit(ArrayReader reader, int key) {
-		int end = 1;
+	public static int binarySearch(ArrayReader reader, int key, int start, int end) {
 		int mid = 0;
-		boolean upperLimitFound = false;
-		while (!upperLimitFound) {
-			if (reader.get(2 * end) != Integer.MAX_VALUE) {
-				end = 2 * end;
-				if (reader.get(end) >= key)
-					upperLimitFound = true;
-			} else {
-				mid = end;
-				end = end * 2;
-				int divisionFactor = 2;
-				while ((end / divisionFactor) > 1) {
-					int temp = mid + (end / divisionFactor);
-					if (reader.get(temp) != Integer.MAX_VALUE)
-						mid = temp;
-					else
-						divisionFactor *= 2;
-				}
+		while (start < end) {
+			mid = (start + end) / 2;
+			int temp = reader.get(mid);
+			if (key == temp)
+				return mid;
+			else if (temp < key)
+				start = mid + 1;
+			else
 				end = mid;
-				upperLimitFound = true;
-			}
 		}
-		return end;
+		if (reader.get(start) == key)
+			return start;
+		return -1;
 	}
 
 	public static void main(String[] args) {
