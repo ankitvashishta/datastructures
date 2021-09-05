@@ -1,8 +1,8 @@
 package com.ankit.data.structures.linkedlist;
 
-public class SingleLinkedList {
+public class SingleLinkedList<T> {
 
-	private SingleLinkedListNode head;
+	private Node<T> head;
 	private int length;
 
 	public SingleLinkedList() {
@@ -13,7 +13,7 @@ public class SingleLinkedList {
 		return length;
 	}
 
-	public SingleLinkedListNode getHead() {
+	public Node<T> getHead() {
 		return head;
 	}
 
@@ -22,7 +22,7 @@ public class SingleLinkedList {
 	 * 
 	 * @param newNode
 	 */
-	public void insertNodeAtStart(SingleLinkedListNode newNode) {
+	public void insertNodeAtStart(Node<T> newNode) {
 		newNode.setNext(head);
 		head = newNode;
 		length++;
@@ -33,8 +33,8 @@ public class SingleLinkedList {
 	 * 
 	 * @param newNode
 	 */
-	public void insertNodeAtEnd(SingleLinkedListNode newNode) {
-		SingleLinkedListNode currentNode = head;
+	public void insertNodeAtEnd(Node<T> newNode) {
+		Node<T> currentNode = head;
 		if (head == null) {
 			head = newNode;
 		} else {
@@ -47,14 +47,14 @@ public class SingleLinkedList {
 	}
 
 	/**
-	 * Inserts a new node at given position. The position is relative and does
-	 * not starts indexing with zero.
+	 * Inserts a new node at given position. The position is relative and does not
+	 * starts indexing with zero.
 	 * 
 	 * @param position
 	 * @param newNode
 	 */
-	public void insertNodeAtPosition(int position, SingleLinkedListNode newNode) {
-		SingleLinkedListNode currentNode = head;
+	public void insertNodeAtPosition(int position, Node<T> newNode) {
+		Node<T> currentNode = head;
 		if (position <= 1) {
 			position = 1;
 			insertNodeAtStart(newNode);
@@ -79,8 +79,8 @@ public class SingleLinkedList {
 	 * 
 	 * @return
 	 */
-	public SingleLinkedListNode removeFromStart() {
-		SingleLinkedListNode currentNode = head;
+	public Node<T> removeFromStart() {
+		Node<T> currentNode = head;
 		if (head == null) {
 			return null;
 		}
@@ -93,15 +93,15 @@ public class SingleLinkedList {
 	/**
 	 * Removes the last node of the list.
 	 */
-	public SingleLinkedListNode removeFromEnd() {
-		SingleLinkedListNode currentNode = head;
+	public Node<T> removeFromEnd() {
+		Node<T> currentNode = head;
 		if (head == null) {
 			return null;
 		}
 		while (currentNode.getNext().getNext() != null) {
 			currentNode = currentNode.getNext();
 		}
-		SingleLinkedListNode temp = currentNode.getNext();
+		Node<T> temp = currentNode.getNext();
 		currentNode.setNext(null);
 		length--;
 		return temp;
@@ -112,14 +112,14 @@ public class SingleLinkedList {
 	 * 
 	 * @param node
 	 */
-	public SingleLinkedListNode removeMatched(SingleLinkedListNode node) {
-		SingleLinkedListNode currentNode = head;
-		SingleLinkedListNode temp = head;
+	public Node<T> removeMatched(Node<T> node) {
+		Node<T> currentNode = head;
+		Node<T> temp = head;
 		if (head == null) {
 			return null;
 		}
 		if (head.getData() == node.getData()) {
-			SingleLinkedListNode matchedNode = removeFromStart();
+			Node<T> matchedNode = removeFromStart();
 			return matchedNode;
 		}
 		while (temp.getNext() != null) {
@@ -142,9 +142,9 @@ public class SingleLinkedList {
 	 * @param position
 	 * @return
 	 */
-	public SingleLinkedListNode removeFromPosition(int position) {
-		SingleLinkedListNode currentNode = null;
-		SingleLinkedListNode temp = head;
+	public Node<T> removeFromPosition(int position) {
+		Node<T> currentNode = null;
+		Node<T> temp = head;
 		if (position <= 1) {
 			position = 1;
 			return removeFromStart();
@@ -172,8 +172,8 @@ public class SingleLinkedList {
 	 * @param data
 	 * @return
 	 */
-	public int getPosition(int data) {
-		SingleLinkedListNode currentNode = head;
+	public int getPosition(T data) {
+		Node<T> currentNode = head;
 		int position = -1;
 		if (head == null) {
 			return position;
@@ -204,7 +204,7 @@ public class SingleLinkedList {
 	@Override
 	public String toString() {
 		StringBuffer strBuffer = new StringBuffer("[ ");
-		SingleLinkedListNode currentNode;
+		Node<T> currentNode;
 		if (head == null) {
 			strBuffer.append("]");
 			return strBuffer.toString();

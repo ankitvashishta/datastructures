@@ -1,11 +1,11 @@
 package com.ankit.data.structures.stack;
 
-import com.ankit.data.structures.linkedlist.SingleLinkedListNode;
+import com.ankit.data.structures.linkedlist.Node;
 
 public class StackUsingLinkedList {
 
 	private int stackLength;
-	private SingleLinkedListNode top;
+	private Node top;
 
 
 	public StackUsingLinkedList() {
@@ -13,7 +13,7 @@ public class StackUsingLinkedList {
 	}
 
 	public void push(int i) {
-		SingleLinkedListNode node = new SingleLinkedListNode(i);
+		Node node = new Node(i);
 		if (stackLength == 0) {
 			this.top = node;
 		} else {

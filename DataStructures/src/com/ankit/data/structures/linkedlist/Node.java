@@ -1,27 +1,27 @@
 package com.ankit.data.structures.linkedlist;
 
+public class Node<T> {
 
-public class SingleLinkedListNode {
-
-	private int data;
-	private SingleLinkedListNode next;
-
-	public SingleLinkedListNode(int data){
+	private T data;
+	private Node<T> next;
+	
+	public Node(T data){
 		this.data = data;
 	}
-	public int getData() {
+
+	public T getData() {
 		return data;
 	}
 
-	public void setData(int data) {
+	public void setData(T data) {
 		this.data = data;
 	}
 
-	public SingleLinkedListNode getNext() {
+	public Node<T> getNext() {
 		return next;
 	}
 
-	public void setNext(SingleLinkedListNode next) {
+	public void setNext(Node<T> next) {
 		this.next = next;
 	}
 

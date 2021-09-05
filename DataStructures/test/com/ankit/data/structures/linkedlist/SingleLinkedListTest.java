@@ -1,20 +1,16 @@
 package com.ankit.data.structures.linkedlist;
 
-import static org.junit.Assert.*;
-
-import java.util.Collections;
-
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 public class SingleLinkedListTest {
 
-	private SingleLinkedList singleLinkedList;
+	private SingleLinkedList<Integer> singleLinkedList;
 
 	@Before
 	public void startUp() {
-		singleLinkedList = new SingleLinkedList();
+		singleLinkedList = new SingleLinkedList<Integer>();
 	}
 
 	@Test
@@ -26,12 +22,12 @@ public class SingleLinkedListTest {
 	@Test
 	public void testGetHead() {
 		insertNodes(singleLinkedList);
-		Assert.assertEquals(5, singleLinkedList.getHead().getData());
+		Assert.assertEquals(5, singleLinkedList.getHead().getData().intValue());
 	}
 
 	@Test
 	public void testInsertNodeAtStart() {
-		SingleLinkedListNode firstNode = new SingleLinkedListNode(1);
+		Node<Integer> firstNode = new Node<Integer>(1);
 		singleLinkedList.insertNodeAtStart(firstNode);
 		Assert.assertEquals(1, singleLinkedList.getLength());
 		Assert.assertTrue(singleLinkedList.getHead().equals(firstNode));
@@ -39,7 +35,7 @@ public class SingleLinkedListTest {
 
 	@Test
 	public void testInsertNodeAtStart_Already_Initiated() {
-		SingleLinkedListNode firstNode = new SingleLinkedListNode(99);
+		Node<Integer> firstNode = new Node<Integer>(99);
 		insertNodes(singleLinkedList);
 		Assert.assertEquals(5, singleLinkedList.getLength());
 		singleLinkedList.insertNodeAtStart(firstNode);
@@ -49,7 +45,7 @@ public class SingleLinkedListTest {
 
 	@Test
 	public void testInsertLastNode() {
-		SingleLinkedListNode lastNode = new SingleLinkedListNode(99);
+		Node<Integer> lastNode = new Node<Integer>(99);
 		singleLinkedList.insertNodeAtEnd(lastNode);
 		Assert.assertEquals(1, singleLinkedList.getLength());
 		Assert.assertTrue(singleLinkedList.getHead().equals(lastNode));
@@ -57,7 +53,7 @@ public class SingleLinkedListTest {
 
 	@Test
 	public void testInsertLastNode_Already_Initiated() {
-		SingleLinkedListNode lastNode = new SingleLinkedListNode(99);
+		Node<Integer> lastNode = new Node<Integer>(99);
 		insertNodes(singleLinkedList);
 		Assert.assertEquals(5, singleLinkedList.getLength());
 		singleLinkedList.insertNodeAtEnd(lastNode);
@@ -68,7 +64,7 @@ public class SingleLinkedListTest {
 	@Test
 	public void testInsertNodeAtPosition() {
 		int position = 3;
-		SingleLinkedListNode newNode = new SingleLinkedListNode(99);
+		Node<Integer> newNode = new Node<Integer>(99);
 		insertNodes(singleLinkedList);
 		Assert.assertEquals(5, singleLinkedList.getLength());
 		singleLinkedList.insertNodeAtPosition(position, newNode);
@@ -80,9 +76,9 @@ public class SingleLinkedListTest {
 	@Test
 	public void testRemoveFromStart() {
 		insertNodes(singleLinkedList);
-		SingleLinkedListNode head = singleLinkedList.getHead();
+		Node<Integer> head = singleLinkedList.getHead();
 		Assert.assertEquals(5, singleLinkedList.getLength());
-		SingleLinkedListNode headNode = singleLinkedList.removeFromStart();
+		Node<Integer> headNode = singleLinkedList.removeFromStart();
 		Assert.assertEquals(4, singleLinkedList.getLength());
 		Assert.assertEquals(head, headNode);
 	}
@@ -90,19 +86,19 @@ public class SingleLinkedListTest {
 	@Test
 	public void testRemoveFromEnd() {
 		insertNodes(singleLinkedList);
-		SingleLinkedListNode tail = getLastNode(singleLinkedList);
+		Node<Integer> tail = getLastNode(singleLinkedList);
 		Assert.assertEquals(5, singleLinkedList.getLength());
-		SingleLinkedListNode tailNode = singleLinkedList.removeFromEnd();
+		Node<Integer> tailNode = singleLinkedList.removeFromEnd();
 		Assert.assertEquals(4, singleLinkedList.getLength());
 		Assert.assertEquals(tail, tailNode);
 	}
 
 	@Test
 	public void testRemoveMatched() {
-		SingleLinkedListNode node = new SingleLinkedListNode(2);
+		Node<Integer> node = new Node<Integer>(2);
 		insertNodes(singleLinkedList);
 		Assert.assertEquals(5, singleLinkedList.getLength());
-		SingleLinkedListNode matchedNode = singleLinkedList.removeMatched(node);
+		Node<Integer> matchedNode = singleLinkedList.removeMatched(node);
 		Assert.assertEquals(4, singleLinkedList.getLength());
 		Assert.assertEquals(node.getData(), matchedNode.getData());
 	}
@@ -112,9 +108,9 @@ public class SingleLinkedListTest {
 		int position = 3;
 		insertNodes(singleLinkedList);
 		Assert.assertEquals(5, singleLinkedList.getLength());
-		SingleLinkedListNode nodeAtPosition = getNodeAtPosition(
+		Node<Integer> nodeAtPosition = getNodeAtPosition(
 				singleLinkedList, position);
-		SingleLinkedListNode removedNode = singleLinkedList
+		Node<Integer> removedNode = singleLinkedList
 				.removeFromPosition(position);
 		Assert.assertEquals(4, singleLinkedList.getLength());
 		Assert.assertEquals(nodeAtPosition.getData(), removedNode.getData());
@@ -134,12 +130,12 @@ public class SingleLinkedListTest {
 		Assert.assertEquals(0, singleLinkedList.getLength());
 	}
 
-	private void insertNodes(SingleLinkedList singleLinkedList) {
-		SingleLinkedListNode node1 = new SingleLinkedListNode(1);
-		SingleLinkedListNode node2 = new SingleLinkedListNode(2);
-		SingleLinkedListNode node3 = new SingleLinkedListNode(3);
-		SingleLinkedListNode node4 = new SingleLinkedListNode(4);
-		SingleLinkedListNode node5 = new SingleLinkedListNode(5);
+	private void insertNodes(SingleLinkedList<Integer> singleLinkedList) {
+		Node<Integer> node1 = new Node<Integer>(1);
+		Node<Integer> node2 = new Node<Integer>(2);
+		Node<Integer> node3 = new Node<Integer>(3);
+		Node<Integer> node4 = new Node<Integer>(4);
+		Node<Integer> node5 = new Node<Integer>(5);
 		singleLinkedList.insertNodeAtStart(node1);
 		singleLinkedList.insertNodeAtStart(node2);
 		singleLinkedList.insertNodeAtStart(node3);
@@ -147,8 +143,8 @@ public class SingleLinkedListTest {
 		singleLinkedList.insertNodeAtStart(node5);
 	}
 
-	private SingleLinkedListNode getLastNode(SingleLinkedList singleLinkedList) {
-		SingleLinkedListNode currentListNode = singleLinkedList.getHead();
+	private Node<Integer> getLastNode(SingleLinkedList<Integer> singleLinkedList) {
+		Node<Integer> currentListNode = singleLinkedList.getHead();
 		if (currentListNode != null) {
 			while (currentListNode.getNext() != null) {
 				currentListNode = currentListNode.getNext();
@@ -157,9 +153,9 @@ public class SingleLinkedListTest {
 		return currentListNode;
 	}
 
-	private SingleLinkedListNode getNodeAtPosition(
-			SingleLinkedList singleLinkedList, int position) {
-		SingleLinkedListNode currentListNode = singleLinkedList.getHead();
+	private Node<Integer> getNodeAtPosition(
+			SingleLinkedList<Integer> singleLinkedList, int position) {
+		Node<Integer> currentListNode = singleLinkedList.getHead();
 		if (currentListNode != null) {
 			while (currentListNode.getNext() != null && position > 1) {
 				currentListNode = currentListNode.getNext();
