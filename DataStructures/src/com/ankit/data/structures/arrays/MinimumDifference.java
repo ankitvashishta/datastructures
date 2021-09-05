@@ -12,8 +12,8 @@ public class MinimumDifference {
 	/*
 	 * Runtime Complexity : O(logn)
 	 * 
-	 * Overall runtime : O(logn+logn+logn) = O(3logn), asymptotically equal to
-	 * O(logn)
+	 * Overall runtime : O(logn) for all the 3 binary search operations ->
+	 * O(logn+logn+logn) = O(3logn), asymptotically equal to O(logn)
 	 * 
 	 * Space Complexity : O(1)
 	 */
