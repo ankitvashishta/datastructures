@@ -206,6 +206,82 @@ public class SingleLinkedList<T> {
 	}
 
 	/**
+	 * Union of two sets A and B returns a SingleLinkedList which contains all the
+	 * elements present in A or B.
+	 * 
+	 * @param list1
+	 * @param list2
+	 * @return
+	 */
+	public SingleLinkedList<T> union(SingleLinkedList<T> list1, SingleLinkedList<T> list2) {
+		SingleLinkedList<T> result = new SingleLinkedList<T>();
+		Set<T> dataSet = new HashSet<T>();
+		Node<T> currNode = list1.getHead();
+		while (currNode != null) {
+			boolean isAdded = dataSet.add(currNode.getData());
+			if (isAdded) {
+				length++;
+				if (result.getHead() == null) {
+					result.insertNodeAtStart(new Node<T>(currNode.getData()));
+				} else {
+					result.insertNodeAtEnd(new Node<T>(currNode.getData()));
+				}
+			}
+			currNode = currNode.getNext();
+		}
+		currNode = list2.getHead();
+		while (currNode != null) {
+			boolean isAdded = dataSet.add(currNode.getData());
+			length++;
+			if (isAdded) {
+				if (result.getHead() == null) {
+					result.insertNodeAtStart(new Node<T>(currNode.getData()));
+				} else {
+					result.insertNodeAtEnd(new Node<T>(currNode.getData()));
+				}
+			}
+			currNode = currNode.getNext();
+		}
+		return result;
+	}
+
+	/**
+	 * 
+	 * The Intersection provides a SingleLinkedList which contains all the elements
+	 * present in A and B.
+	 * 
+	 * @param list1
+	 * @param list2
+	 * @return
+	 */
+	public SingleLinkedList<T> intersection(SingleLinkedList<T> list1, SingleLinkedList<T> list2) {
+		SingleLinkedList<T> result = new SingleLinkedList<T>();
+		Set<T> dataSet = new HashSet<T>();
+		Node<T> currNode = list1.getHead();
+		while (currNode != null) {
+			boolean isAdded = dataSet.add(currNode.getData());
+			currNode = currNode.getNext();
+			if (isAdded)
+				length++;
+		}
+		currNode = list2.getHead();
+		while (currNode != null) {
+			boolean isAdded = dataSet.add(currNode.getData());
+			length++;
+			if (!isAdded) {
+				length--;
+				if (result.getHead() == null) {
+					result.insertNodeAtStart(new Node<T>(currNode.getData()));
+				} else {
+					result.insertNodeAtEnd(new Node<T>(currNode.getData()));
+				}
+			}
+			currNode = currNode.getNext();
+		}
+		return result;
+	}
+
+	/**
 	 * Removes the node at given position.
 	 * 
 	 * @param position

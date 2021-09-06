@@ -1,5 +1,7 @@
 package com.ankit.data.structures.linkedlist;
 
+import static org.junit.Assert.assertEquals;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -145,6 +147,38 @@ public class SingleLinkedListTest {
 		insertNodes(singleLinkedList);
 		singleLinkedList.clearList();
 		Assert.assertEquals(0, singleLinkedList.getLength());
+	}
+	
+	@Test
+	public void testUnion() {
+		SingleLinkedList<Integer> list1 = new SingleLinkedList<Integer>();
+		list1.insertNodeAtStart(new Node<Integer>(8));
+		list1.insertNodeAtStart(new Node<Integer>(7));
+		list1.insertNodeAtStart(new Node<Integer>(6));
+		list1.insertNodeAtStart(new Node<Integer>(4));
+		SingleLinkedList<Integer> list2 = new SingleLinkedList<Integer>();
+		list2.insertNodeAtStart(new Node<Integer>(1));
+		list2.insertNodeAtStart(new Node<Integer>(2));
+		list2.insertNodeAtStart(new Node<Integer>(3));
+		list2.insertNodeAtStart(new Node<Integer>(4));
+		SingleLinkedList<Integer> result = singleLinkedList.union(list1, list2);
+		assertEquals(7, result.getLength());
+	}
+	
+	@Test
+	public void testIntersection() {
+		SingleLinkedList<Integer> list1 = new SingleLinkedList<Integer>();
+		list1.insertNodeAtStart(new Node<Integer>(8));
+		list1.insertNodeAtStart(new Node<Integer>(7));
+		list1.insertNodeAtStart(new Node<Integer>(6));
+		list1.insertNodeAtStart(new Node<Integer>(4));
+		SingleLinkedList<Integer> list2 = new SingleLinkedList<Integer>();
+		list2.insertNodeAtStart(new Node<Integer>(1));
+		list2.insertNodeAtStart(new Node<Integer>(2));
+		list2.insertNodeAtStart(new Node<Integer>(3));
+		list2.insertNodeAtStart(new Node<Integer>(4));
+		SingleLinkedList<Integer> result = singleLinkedList.intersection(list1, list2);
+		assertEquals(1, result.getLength());
 	}
 
 	private void insertNodes(SingleLinkedList<Integer> singleLinkedList) {
