@@ -288,7 +288,7 @@ public class SingleLinkedList<T> {
 	 * @param list2
 	 * @return
 	 */
-	public SingleLinkedList<T> intersection(SingleLinkedList<T> list1, SingleLinkedList<T> list2) {
+	public SingleLinkedList<T> commonDataNodes(SingleLinkedList<T> list1, SingleLinkedList<T> list2) {
 		SingleLinkedList<T> result = new SingleLinkedList<T>();
 		Set<T> dataSet = new HashSet<T>();
 		Node<T> currNode = list1.getHead();
@@ -313,6 +313,115 @@ public class SingleLinkedList<T> {
 			currNode = currNode.getNext();
 		}
 		return result;
+	}
+
+	/**
+	 * Given the head nodes of two linked lists that may or may not intersect, find
+	 * out if they intersect and return the point of intersection. Return null
+	 * otherwise.
+	 * 
+	 * Example : The following two lists merge at the same nodes, which is 4. The
+	 * method in this case should return 4.
+	 * 
+	 * head1 -> 1 - 2 - 3
+	 * 
+	 * ****************** \
+	 * 
+	 * ******************** 4 - 5 - null
+	 * 
+	 * ******************* /
+	 * 
+	 * head2 -> 7 - 8 - 9
+	 * 
+	 * Example : The following two lists have identical data nodes. But, the nodes
+	 * themselves are different. Hence, they do not intersect. The method in this
+	 * case should return null.
+	 * 
+	 * head1 -> 1 - 2 - 3 - 4 - 5 - null
+	 * 
+	 * head2 -> 7 - 8 - 9 - 4 - 5 - null
+	 * 
+	 * 
+	 * @param head1
+	 * @param head2
+	 * @return intersecting node.
+	 */
+	public Node<T> intersection(Node<T> head1, Node<T> head2) {
+		if (head1 == null || head2 == null)
+			return null;
+		int counter1 = getNodeLength(head1);
+		int counter2 = getNodeLength(head2);
+		Node<T> node1 = head1;
+		Node<T> node2 = head2;
+		if (counter1 > counter2) {
+			while (counter1 > counter2) {
+				node1 = node1.getNext();
+				counter1--;
+			}
+		} else {
+			while (counter2 > counter1) {
+				node2 = node2.getNext();
+				counter2--;
+			}
+		}
+		while (node1.getNext() != null) {
+			if (node1 != node2) {
+				node1 = node1.getNext();
+				node2 = node2.getNext();
+			} else {
+				return node1;
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Given the head node of a singly linked list and an integer 'n', rotate the
+	 * linked list by 'n'.
+	 * 
+	 * Example : Given the following head, rotate by 2.
+	 * 
+	 * head -> 1 - 2 - 3 - 4 - 5 - null
+	 * 
+	 * Returns :
+	 * 
+	 * head -> 4 - 5 - 1 - 2 - 3 - null
+	 * 
+	 * @param head
+	 * @param n
+	 * @return new head of the rotated list.
+	 */
+	public Node<T> rotateList(Node<T> head, int n) {
+		if (head == null)
+			return null;
+		Node<T> currNode = head;
+		int length = getNodeLength(head);
+		if (n < length) {
+			int newLastNodePosition = length - n;
+			newLastNodePosition--;
+			while (newLastNodePosition > 0) {
+				currNode = currNode.getNext();
+				newLastNodePosition--;
+			}
+			Node<T> headToBe = currNode.getNext();
+			currNode.setNext(null);
+			currNode = headToBe;
+			while (currNode.getNext() != null)
+				currNode = currNode.getNext();
+			currNode.setNext(head);
+			head = headToBe;
+		}
+		return head;
+	}
+
+	private int getNodeLength(Node<T> head) {
+		Node<T> currNode = head;
+		int length = 1;
+		while (currNode.getNext() != null) {
+			currNode = currNode.getNext();
+			length++;
+		}
+		return length;
 	}
 
 	/**

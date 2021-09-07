@@ -223,6 +223,27 @@ public class DoubleLinkedList {
 		}
 		return null;
 	}
+	
+	/**
+	 * Return if the DoubleLinkedList is a palindrome.
+	 * @return
+	 */
+	public boolean isPalindrome() {
+		DLLNode startingNode = this.head;
+		DLLNode endNode = this.tail;
+		int midOfList = this.length/2;
+		int counter = 1;
+		while(counter <= midOfList) {
+			if(startingNode.getData() == endNode.getData()) {
+				startingNode = startingNode.getNext();
+				endNode = endNode.getPrev();
+				counter++;
+			}else {
+				return false;
+			}
+		}
+		return true;
+	}
 
 	/**
 	 * Clears the list and re initializes all the parameters.
