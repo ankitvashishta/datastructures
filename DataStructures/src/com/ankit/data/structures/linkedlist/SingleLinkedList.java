@@ -21,6 +21,40 @@ public class SingleLinkedList<T> {
 	}
 
 	/**
+	 * Returns the nth element from beginning.
+	 * 
+	 * @param n
+	 * @return
+	 */
+	public T getElementAtPosition(int n) {
+		int listSize = this.length;
+		if (n <= listSize) {
+			int counter = 1;
+			Node<T> currNode = this.getHead();
+			while (counter < n) {
+				currNode = currNode.getNext();
+				counter++;
+			}
+			return currNode.getData();
+		}
+		return null;
+	}
+
+	/**
+	 * Returns the nth element from end.
+	 * 
+	 * @param n
+	 * @return
+	 */
+	public T getElementAtPositionFromEnd(int n) {
+		int listSize = this.length;
+		if (n <= listSize) {
+			return getElementAtPosition(listSize - (n - 1));
+		}
+		return null;
+	}
+
+	/**
 	 * Inserts a new node at the starting of the list.
 	 * 
 	 * @param newNode

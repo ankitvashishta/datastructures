@@ -26,6 +26,20 @@ public class SingleLinkedListTest {
 		insertNodes(singleLinkedList);
 		Assert.assertEquals(5, singleLinkedList.getHead().getData().intValue());
 	}
+	
+	@Test
+	public void testGetElementAtPosition() {
+		insertNodes(singleLinkedList);
+		Integer data = singleLinkedList.getElementAtPosition(1);
+		assertEquals(singleLinkedList.getHead().getData(), data);
+	}
+	
+	@Test
+	public void testGetElementAtPositionFromEnd() {
+		insertNodes(singleLinkedList);
+		Integer data = singleLinkedList.getElementAtPositionFromEnd(5);
+		assertEquals(singleLinkedList.getHead().getData(), data);
+	}
 
 	@Test
 	public void testInsertNodeAtStart() {
