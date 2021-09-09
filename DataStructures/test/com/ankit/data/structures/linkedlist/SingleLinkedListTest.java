@@ -26,21 +26,20 @@ public class SingleLinkedListTest {
 		insertNodes(singleLinkedList);
 		Assert.assertEquals(5, singleLinkedList.getHead().getData().intValue());
 	}
-	
+
 	@Test
 	public void testGetElementAtPosition() {
 		insertNodes(singleLinkedList);
 		Integer data = singleLinkedList.getElementAtPosition(1);
 		assertEquals(singleLinkedList.getHead().getData(), data);
 	}
-	
+
 	@Test
 	public void testGetElementAtPositionFromEnd() {
 		insertNodes(singleLinkedList);
 		Integer data = singleLinkedList.getElementAtPositionFromEnd(5);
 		assertEquals(singleLinkedList.getHead().getData(), data);
 	}
-	
 
 	@Test
 	public void testInsertNodeAtStart() {
@@ -163,7 +162,7 @@ public class SingleLinkedListTest {
 		singleLinkedList.clearList();
 		Assert.assertEquals(0, singleLinkedList.getLength());
 	}
-	
+
 	@Test
 	public void testUnion() {
 		SingleLinkedList<Integer> list1 = new SingleLinkedList<Integer>();
@@ -179,7 +178,7 @@ public class SingleLinkedListTest {
 		SingleLinkedList<Integer> result = singleLinkedList.union(list1, list2);
 		assertEquals(7, result.getLength());
 	}
-	
+
 	@Test
 	public void testCommonDataNodes() {
 		SingleLinkedList<Integer> list1 = new SingleLinkedList<Integer>();
@@ -195,7 +194,7 @@ public class SingleLinkedListTest {
 		SingleLinkedList<Integer> result = singleLinkedList.commonDataNodes(list1, list2);
 		assertEquals(1, result.getLength());
 	}
-	
+
 	@Test
 	public void testIntersection() {
 		Node<Integer> node1 = new Node<Integer>(1);
@@ -216,7 +215,7 @@ public class SingleLinkedListTest {
 		Node<Integer> intersectingNode = singleLinkedList.intersection(node1, node7);
 		assertEquals(node4, intersectingNode);
 	}
-	
+
 	@Test
 	public void testRotateList() {
 		Node<Integer> node1 = new Node<Integer>(1);
@@ -230,6 +229,25 @@ public class SingleLinkedListTest {
 		node4.setNext(node5);
 		Node<Integer> rotatedHeadNode = singleLinkedList.rotateList(node1, 2);
 		assertEquals(node4, rotatedHeadNode);
+	}
+
+	@Test
+	public void testReverseKNodes() {
+		Node<Integer> node1 = new Node<Integer>(1);
+		Node<Integer> node2 = new Node<Integer>(2);
+		Node<Integer> node3 = new Node<Integer>(3);
+		Node<Integer> node4 = new Node<Integer>(4);
+		Node<Integer> node5 = new Node<Integer>(5);
+		Node<Integer> node6 = new Node<Integer>(6);
+		Node<Integer> node7 = new Node<Integer>(7);
+		node1.setNext(node2);
+		node2.setNext(node3);
+		node3.setNext(node4);
+		node4.setNext(node5);
+		node5.setNext(node6);
+		node6.setNext(node7);
+		Node<Integer> reveresedHeadNode = singleLinkedList.reverseKNodes(node1, 3);
+		assertEquals(node3, reveresedHeadNode);
 	}
 
 	private void insertNodes(SingleLinkedList<Integer> singleLinkedList) {

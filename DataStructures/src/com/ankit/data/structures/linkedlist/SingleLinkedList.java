@@ -20,6 +20,14 @@ public class SingleLinkedList<T> {
 		return head;
 	}
 
+	public void setHead(Node<T> head) {
+		this.head = head;
+	}
+
+	/**************************************************
+	 ************ Utility Methods start****************
+	 **************************************************/
+
 	/**
 	 * Returns the nth element from beginning.
 	 * 
@@ -172,6 +180,96 @@ public class SingleLinkedList<T> {
 		return null;
 
 	}
+
+	/**
+	 * Removes the node at given position.
+	 * 
+	 * @param position
+	 * @return
+	 */
+	public Node<T> removeFromPosition(int position) {
+		Node<T> currentNode = null;
+		Node<T> temp = head;
+		if (position <= 1) {
+			position = 1;
+			return removeFromStart();
+		} else if (position >= length) {
+			position = length;
+			return removeFromEnd();
+		}
+		if (head == null) {
+			return null;
+		} else {
+			while (temp.getNext() != null && --position > 1) {
+				temp = temp.getNext();
+			}
+			currentNode = temp.getNext();
+			temp.setNext(currentNode.getNext());
+			currentNode.setNext(null);
+		}
+		length--;
+		return currentNode;
+	}
+
+	/**
+	 * Retrieves the position of a given node.
+	 * 
+	 * @param data
+	 * @return
+	 */
+	public int getPosition(T data) {
+		Node<T> currentNode = head;
+		int position = -1;
+		if (head == null) {
+			return position;
+		}
+		position = 1;
+		while (currentNode != null) {
+			if (currentNode.getData() == data) {
+				return position;
+			}
+			currentNode = currentNode.getNext();
+			position++;
+		}
+		position = -1;
+		return position;
+	}
+
+	/**
+	 * Clears the list. And Resets the fields.
+	 */
+	public void clearList() {
+		head = null;
+		length = 0;
+	}
+
+	/**
+	 * Override the toString method of object class.
+	 */
+	@Override
+	public String toString() {
+		StringBuffer strBuffer = new StringBuffer("[ ");
+		Node<T> currentNode;
+		if (head == null) {
+			strBuffer.append("]");
+			return strBuffer.toString();
+		}
+		strBuffer.append(head.getData());
+		currentNode = head.getNext();
+		if (currentNode != null) {
+			while (currentNode != null) {
+				strBuffer.append(", " + currentNode.getData());
+				currentNode = currentNode.getNext();
+			}
+		}
+
+		strBuffer.append("]");
+		return strBuffer.toString();
+	}
+
+	/**************************************************
+	 ************ Utility Methods end******************
+	 **************************************************/
 
 	/**
 	 * Checks if there exists a loop in the single linked list.
@@ -414,6 +512,59 @@ public class SingleLinkedList<T> {
 		return head;
 	}
 
+	/**
+	 * Given a singly linked list and an integer 'k', reverse every 'k' element. If
+	 * k <= 1, then the input list is unchanged. If k >= n (n is the length of
+	 * linked list), then reverse the whole linked list.
+	 * 
+	 * Example :
+	 * 
+	 * head -> 1 - 2 - 3 - 4 - 5 - 6 - 7. And, given k = 4
+	 * 
+	 * Should return: head -> 4 - 3 - 2 - 1 - 7 - 6 - 5.
+	 * 
+	 * @param head
+	 * @param k
+	 * @return
+	 */
+	public Node<T> reverseKNodes(Node<T> head, int k) {
+		if (k <= 1)
+			return head;
+		int nodeLength = getNodeLength(head);
+		Node<T> prevNode = null;
+		Node<T> currNode = head;
+		Node<T> tempHead = null;
+		Node<T> tempTail = null;
+		int counter = k;
+		while (counter > 0 && currNode != null) {
+			Node<T> temp = currNode.getNext();
+			currNode.setNext(prevNode);
+			prevNode = currNode;
+			currNode = temp;
+			counter--;
+		}
+		tempTail = head;
+		head = prevNode;
+		if (k > nodeLength)
+			return head;
+		while (currNode != null) {
+			tempHead = currNode;
+			counter = k;
+			prevNode = null;
+			while (counter > 0 && currNode != null) {
+				Node<T> temp = currNode.getNext();
+				currNode.setNext(prevNode);
+				prevNode = currNode;
+				currNode = temp;
+				counter--;
+			}
+			tempTail.setNext(prevNode);
+			tempTail = tempHead;
+			tempHead = currNode;
+		}
+		return head;
+	}
+
 	private int getNodeLength(Node<T> head) {
 		Node<T> currNode = head;
 		int length = 1;
@@ -422,92 +573,6 @@ public class SingleLinkedList<T> {
 			length++;
 		}
 		return length;
-	}
-
-	/**
-	 * Removes the node at given position.
-	 * 
-	 * @param position
-	 * @return
-	 */
-	public Node<T> removeFromPosition(int position) {
-		Node<T> currentNode = null;
-		Node<T> temp = head;
-		if (position <= 1) {
-			position = 1;
-			return removeFromStart();
-		} else if (position >= length) {
-			position = length;
-			return removeFromEnd();
-		}
-		if (head == null) {
-			return null;
-		} else {
-			while (temp.getNext() != null && --position > 1) {
-				temp = temp.getNext();
-			}
-			currentNode = temp.getNext();
-			temp.setNext(currentNode.getNext());
-			currentNode.setNext(null);
-		}
-		length--;
-		return currentNode;
-	}
-
-	/**
-	 * Retrieves the position of a given node.
-	 * 
-	 * @param data
-	 * @return
-	 */
-	public int getPosition(T data) {
-		Node<T> currentNode = head;
-		int position = -1;
-		if (head == null) {
-			return position;
-		}
-		position = 1;
-		while (currentNode != null) {
-			if (currentNode.getData() == data) {
-				return position;
-			}
-			currentNode = currentNode.getNext();
-			position++;
-		}
-		position = -1;
-		return position;
-	}
-
-	/**
-	 * Clears the list. And Resets the fields.
-	 */
-	public void clearList() {
-		head = null;
-		length = 0;
-	}
-
-	/**
-	 * Override the toString method of object class.
-	 */
-	@Override
-	public String toString() {
-		StringBuffer strBuffer = new StringBuffer("[ ");
-		Node<T> currentNode;
-		if (head == null) {
-			strBuffer.append("]");
-			return strBuffer.toString();
-		}
-		strBuffer.append(head.getData());
-		currentNode = head.getNext();
-		if (currentNode != null) {
-			while (currentNode != null) {
-				strBuffer.append(", " + currentNode.getData());
-				currentNode = currentNode.getNext();
-			}
-		}
-
-		strBuffer.append("]");
-		return strBuffer.toString();
 	}
 
 }
