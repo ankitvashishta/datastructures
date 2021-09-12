@@ -3,30 +3,26 @@ package com.ankit.data.structures.strings;
 import java.util.PriorityQueue;
 
 /**
- * Given a sequence, find the length of its Longest Palindromic Subsequence
- * (LPS).
+ * Given a string, find the minimum number of characters that we can remove to
+ * make it a palindrome.
  * 
- * Subsequence - sequence that can be derived from another sequence by deleting
- * some or no elements without changing the order of the remaining elements.
+ * Input: "abdbca"
  * 
- * Example -> Input: "abdbca"
+ * Output: 1
  * 
- * Output: 5
- * 
- * Explanation: LPS is "abdba".
+ * Explanation: By removing "c", we get a palindrome "abdba".
  * 
  * @author ankit
  *
  */
-public class LongestPallindromicSubsequence {
+public class MinimumDeletionsPallindrome {
 
 	public int findLPSLength(String input) {
 
 		PriorityQueue<String> priorityQueue = new PriorityQueue<String>(
 				(a, b) -> ((Integer) b.length()).compareTo(a.length()));
 		checkLPS(input, priorityQueue);
-
-		return priorityQueue.peek().length();
+		return input.length() - priorityQueue.peek().length();
 	}
 
 	public void checkLPS(String input, PriorityQueue<String> priorityQueue) {
@@ -55,7 +51,7 @@ public class LongestPallindromicSubsequence {
 	}
 
 	public static void main(String[] args) {
-		LongestPallindromicSubsequence lps = new LongestPallindromicSubsequence();
+		MinimumDeletionsPallindrome lps = new MinimumDeletionsPallindrome();
 		System.out.println(lps.findLPSLength("abdbca"));
 		System.out.println(lps.findLPSLength("cddpd"));
 		System.out.println(lps.findLPSLength("pqr"));
