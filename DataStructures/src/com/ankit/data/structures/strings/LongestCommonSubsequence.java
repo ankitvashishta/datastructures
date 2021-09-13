@@ -15,7 +15,7 @@ public class LongestCommonSubsequence {
 
 	/*
 	 * Runtime Complexity: Because of the three recursive calls, the time complexity
-	 * of the above algorithm is exponential O(3^{m+n}).
+	 * of the above algorithm is exponential O(2^{m+n}).
 	 * 
 	 * Space Complexity: O(m+n) -> this space will be used to store the recursion
 	 * stack.
