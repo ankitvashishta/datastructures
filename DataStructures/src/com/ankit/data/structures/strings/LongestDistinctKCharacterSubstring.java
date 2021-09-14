@@ -1,4 +1,4 @@
-package com.ankit.data.structures.arrays;
+package com.ankit.data.structures.strings;
 
 import java.util.HashSet;
 import java.util.Set;
