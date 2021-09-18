@@ -6,17 +6,22 @@ import java.util.stream.Collectors;
 
 /**
  * For a given number ‘N’, write a function to generate all combination of ‘N’
- * pairs of balanced parentheses.
+ * pairs of balanced braces.
  * 
  * Example -> Input: N=3
  * 
- * Output: ((())), (()()), (())(), ()(()), ()()()
+ * Output: {{{}}}, {{}{}}, {{}}{}, {}{{}}, {}{}{}
  * 
  * @author ankit
  *
  */
 public class BalancedBraces {
 
+	/*
+	 * The runtime complexity of this solution is exponential, 2^n.
+	 * 
+	 * Space Complexity : O(n)
+	 */
 	public static ArrayList<ArrayList<Character>> printAllBraces(int num) {
 		ArrayList<ArrayList<Character>> resultChar = new ArrayList<ArrayList<Character>>();
 		String parantheses = "{}";
@@ -37,6 +42,13 @@ public class BalancedBraces {
 			}
 			result = resultCopy;
 
+		}
+		for (String str : result) {
+			ArrayList<Character> chars = new ArrayList<>();
+			for (char ch : str.toCharArray()) {
+				chars.add(ch);
+			}
+			resultChar.add(chars);
 		}
 		result.stream().forEach(e -> {
 			System.out.println(e);
