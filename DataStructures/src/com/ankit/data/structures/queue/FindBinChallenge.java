@@ -1,7 +1,16 @@
 package com.ankit.data.structures.queue;
 
+/**
+ * Generate Binary numbers for numbers - 1 to given number 'n' using a Queue.
+ * 
+ * @author ankit
+ *
+ */
 public class FindBinChallenge {
 	/**
+	 * 
+	 * Time Complexity : O(n) as the queue is iterated once;
+	 * 
 	 * 1.Start with Enqueuing 1.
 	 * 
 	 * 2.Dequeue a number from queue and append 0 to it and enqueue it back to
