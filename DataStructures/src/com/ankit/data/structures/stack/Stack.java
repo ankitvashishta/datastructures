@@ -3,7 +3,8 @@ package com.ankit.data.structures.stack;
 public class Stack<V> {
 	private int maxSize;
 	private int top;
-	private V array[];
+	private V[] array;
+	private int currentSize;
 
 	/*
 	 * Java does not allow generic type arrays. So we have used an array of Object
@@ -12,10 +13,15 @@ public class Stack<V> {
 	 * the warning.
 	 */
 	@SuppressWarnings("unchecked")
-	public Stack(int max_size) {
-		this.maxSize = max_size;
+	public Stack(int maxSize) {
+		this.maxSize = maxSize;
 		this.top = -1; // initially when stack is empty
-		array = (V[]) new Object[max_size];// type casting Object[] to V[]
+		array = (V[]) new Object[maxSize];// type casting Object[] to V[]
+		this.currentSize = 0;
+	}
+
+	public int getCurrentSize() {
+		return currentSize;
 	}
 
 	// returns the maximum size capacity
@@ -47,13 +53,14 @@ public class Stack<V> {
 			return;
 		}
 		array[++top] = value; // increments the top and adds value to updated top
+		currentSize++;
 	}
 
 	// removes a value from top of Stack and returns
 	public V pop() {
 		if (isEmpty())
 			return null;
+		currentSize--;
 		return array[top--]; // returns value and top and decrements the top
 	}
-
 }
