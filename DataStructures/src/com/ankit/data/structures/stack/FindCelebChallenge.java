@@ -31,6 +31,10 @@ package com.ankit.data.structures.stack;
  *
  */
 public class FindCelebChallenge {
+	
+	/*
+	 * Time Complexity : O(n)
+	 */
 	public static int findCelebrity(int[][] party, int numPeople) {
 		int celebrity = -1;
 		Stack<Integer> stack = new Stack<Integer>(numPeople);
