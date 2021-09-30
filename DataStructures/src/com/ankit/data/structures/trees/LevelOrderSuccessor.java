@@ -26,20 +26,12 @@ public class LevelOrderSuccessor {
 		TreeNode currNode = root;
 		while (!queue.isEmpty()) {
 			currNode = queue.poll();
-			if (currNode.val != key) {
-				if (currNode.left != null)
-					queue.offer(currNode.left);
-				if (currNode.right != null)
-					queue.offer(currNode.right);
-			} else {
-				if (queue.isEmpty()) {
-					if (currNode.left != null)
-						queue.offer(currNode.left);
-					if (currNode.right != null)
-						queue.offer(currNode.right);
-				}
+			if (currNode.left != null)
+				queue.offer(currNode.left);
+			if (currNode.right != null)
+				queue.offer(currNode.right);
+			if (currNode.val == key)
 				return queue.poll();
-			}
 		}
 		return null;
 	}
@@ -57,15 +49,5 @@ public class LevelOrderSuccessor {
 		result = LevelOrderSuccessor.findSuccessor(root, 9);
 		if (result != null)
 			System.out.println(result.val + " ");
-	}
-}
-
-class TreeNode {
-	int val;
-	TreeNode left;
-	TreeNode right;
-
-	TreeNode(int x) {
-		val = x;
 	}
 }

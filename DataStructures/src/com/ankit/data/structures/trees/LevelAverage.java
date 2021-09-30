@@ -72,13 +72,3 @@ public class LevelAverage {
 		System.out.print("Level averages are: " + result);
 	}
 }
-
-class TreeNode {
-	int val;
-	TreeNode left;
-	TreeNode right;
-
-	TreeNode(int x) {
-		val = x;
-	}
-}
