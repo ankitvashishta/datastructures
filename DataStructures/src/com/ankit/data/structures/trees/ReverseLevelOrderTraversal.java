@@ -16,6 +16,14 @@ import java.util.Queue;
  *
  */
 public class ReverseLevelOrderTraversal {
+
+	/*
+	 * Time Complexity : O(n) where n is the number of nodes, as we traverse each
+	 * node once.
+	 * 
+	 * Space Complexity : O(n) as we return a list containing the traversed nodes.
+	 * Also we need O(n) space for the queue.
+	 */
 	public static List<List<Integer>> traverse(TreeNode root) {
 		LinkedList<List<Integer>> result = new LinkedList<List<Integer>>();
 		TreeNode currNode;
