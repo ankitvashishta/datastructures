@@ -68,13 +68,3 @@ public class ReverseLevelOrderTraversal {
 		System.out.println("Reverse level order traversal: " + result);
 	}
 }
-
-class TreeNode {
-	int val;
-	TreeNode left;
-	TreeNode right;
-
-	TreeNode(int x) {
-		val = x;
-	}
-}
