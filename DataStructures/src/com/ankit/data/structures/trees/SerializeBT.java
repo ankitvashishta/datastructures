@@ -7,9 +7,14 @@ import java.io.ObjectOutputStream;
 import java.util.LinkedList;
 import java.util.Queue;
 
+/**
+ * Serialize a binary tree to a file and then deserialize it back to a tree so
+ * that the original and the deserialized trees are identical.
+ * 
+ * @author ankit
+ *
+ */
 public class SerializeBT {
-
-	private static final int MARKER = Integer.MIN_VALUE;
 
 	public static void serialize(TreeNode node, ObjectOutputStream stream) throws java.io.IOException {
 		Queue<TreeNode> queue = new LinkedList<>();
