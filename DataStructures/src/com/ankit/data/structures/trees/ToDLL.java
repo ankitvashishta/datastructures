@@ -12,6 +12,13 @@ import java.util.Queue;
  *
  */
 public class ToDLL {
+	/*
+	 * Time Complexity : O(n) where n is the number of nodes, as we traverse each
+	 * node once.
+	 * 
+	 * Space Complexity : O(n) as we return a list containing the traversed nodes.
+	 * Also we need O(n) space for the queue.
+	 */
 	public static TreeNode convertToLinkedList(TreeNode root) {
 		Queue<TreeNode> queue = new LinkedList<>();
 		inOrderTraversal(root, queue);
@@ -46,10 +53,10 @@ public class ToDLL {
 		root.right.left.left = new TreeNode(20);
 		root.right.left.right = new TreeNode(17);
 		root = convertToLinkedList(root);
-		while(root!=null) {
+		while (root != null) {
 			System.out.print(root.val + " ");
 			root = root.right;
 		}
-		
+
 	}
 }
