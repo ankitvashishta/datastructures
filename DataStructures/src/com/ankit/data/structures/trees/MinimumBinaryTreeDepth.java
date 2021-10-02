@@ -24,6 +24,10 @@ package com.ankit.data.structures.trees;
  *
  */
 public class MinimumBinaryTreeDepth {
+	
+	/*
+	 * Time Complexity : O(n)
+	 */
 	public static int findDepth(TreeNode root) {
 		return minDepth(root, 1);
 	}
