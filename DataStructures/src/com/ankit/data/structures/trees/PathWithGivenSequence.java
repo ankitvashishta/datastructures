@@ -1,8 +1,5 @@
 package com.ankit.data.structures.trees;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Given a binary tree and a number sequence, find if the
  * sequence is present as a root-to-leaf path in the given tree.
@@ -26,28 +23,27 @@ public class PathWithGivenSequence {
 	/*
 	 * Runtime Complexity : O(n)
 	 * 
-	 * Space Complexity : O(n)
+	 * Space Complexity : O(n) - Space to store recursive call stack.
 	 */
 	public static boolean findPath(TreeNode root, int[] sequence) {
 		String result = "";
 		for (int i : sequence)
 			result += i;
-		List<String> paths = new ArrayList<String>();
-		getPaths(root, "", result, paths);
-		for (String str : paths)
-			if (str.equals(result))
-				return true;
-		return false;
+		return getPaths(root, "", result);
 	}
 
-	public static void getPaths(TreeNode node, String str, String result, List<String> paths) {
+	public static boolean getPaths(TreeNode node, String str, String result) {
 		str += node.val;
 		if (node.left == null && node.right == null)
-			paths.add(str);
+			if (str.equals(result))
+				return true;
+		boolean left = false;
+		boolean right = false;
 		if (node.left != null)
-			getPaths(node.left, str, result, paths);
+			left = getPaths(node.left, str, result);
 		if (node.right != null)
-			getPaths(node.right, str, result, paths);
+			right = getPaths(node.right, str, result);
+		return left || right;
 	}
 
 	public static void main(String[] args) {
