@@ -18,10 +18,12 @@ import java.util.HashSet;
 public class Challenge2_CheckDisjoint {
 
 	/*
-	 * /* Time Complexity : O(m + n) -> m & n are the size of two input arrays.
+	 * Time Complexity : O(m+n) -> m & n are the size of two input arrays.
 	 * 
-	 * Space Complexity : O(m + n) -> m & n are the size of two input arrays. If the
-	 * arrays are disjoint, hashset would contain all the elements.
+	 * Space Complexity : O(m) -> HashSet contains all the elements of the first
+	 * array, and then iterate over the second array, and if any of the element is
+	 * found, we break the flow - as there is a common element.
+	 * 
 	 */
 	public static Object isDisjoint(int[] arr1, int[] arr2) {
 		HashSet<Integer> nums = new HashSet<>();
@@ -29,7 +31,7 @@ public class Challenge2_CheckDisjoint {
 			nums.add(i);
 		}
 		for (int i : arr2) {
-			if (!nums.add(i))
+			if (nums.contains(i))
 				return false;
 		}
 		return Boolean.TRUE;
