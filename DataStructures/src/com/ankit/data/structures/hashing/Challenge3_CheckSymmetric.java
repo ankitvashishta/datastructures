@@ -10,6 +10,9 @@ import java.util.HashMap;
  * 
  * Output : {3,4}{5,9}
  * 
+ * Note: We will return {3, 4} and {5, 9} instead of {4, 3} and {9, 5} because
+ * the former occurred first.
+ * 
  * @author ankit
  *
  */
